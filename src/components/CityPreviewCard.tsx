@@ -1,4 +1,5 @@
 import { Link } from 'react-router-dom';
+import { publicAsset } from '../lib/assets';
 import type { MapPoint } from '../types/trip';
 
 type CityPreviewCardProps = {
@@ -11,7 +12,7 @@ export default function CityPreviewCard({ point, className = '' }: CityPreviewCa
 
   return (
     <article className={classes}>
-      <img src={point.cover} alt={`${point.name}旅行封面`} />
+      <img src={publicAsset(point.cover)} alt={`${point.name}旅行封面`} />
       <div>
         <p>{point.dateRange}</p>
         <h2>{point.name}</h2>

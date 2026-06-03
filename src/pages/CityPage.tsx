@@ -1,4 +1,5 @@
 import { Link, useParams } from 'react-router-dom';
+import { publicAsset } from '../lib/assets';
 import { findTripById, getAdjacentTrips } from '../lib/trips';
 
 export default function CityPage() {
@@ -31,7 +32,7 @@ export default function CityPage() {
       <section className="photo-grid" aria-label={`${trip.city}相册`}>
         {trip.photos.map((photo) => (
           <figure key={photo.src}>
-            <img src={photo.src} alt={photo.caption ?? trip.city} />
+            <img src={publicAsset(photo.src)} alt={photo.caption ?? trip.city} />
             {photo.caption ? <figcaption>{photo.caption}</figcaption> : null}
           </figure>
         ))}

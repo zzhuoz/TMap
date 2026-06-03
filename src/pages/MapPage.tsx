@@ -1,5 +1,5 @@
 import { useMemo, useState } from 'react';
-import { useNavigate } from 'react-router-dom';
+import { Link, useNavigate } from 'react-router-dom';
 import ChinaTravelMap from '../components/ChinaTravelMap';
 import CityPreviewCard from '../components/CityPreviewCard';
 import { getMapPoints, trips } from '../lib/trips';
@@ -9,6 +9,7 @@ export default function MapPage() {
   const points = useMemo(() => getMapPoints(), []);
   const [selectedId, setSelectedId] = useState(points[0]?.id);
   const selectedPoint = points.find((point) => point.id === selectedId);
+  const keepLastPreview = (_id: string) => undefined;
 
   return (
     <main className="map-page">
@@ -23,10 +24,24 @@ export default function MapPage() {
           points={points}
           selectedId={selectedId}
           onHover={setSelectedId}
-          onLeave={setSelectedId}
+          onLeave={keepLastPreview}
           onSelect={(id) => navigate(`/city/${id}`)}
         />
         {selectedPoint ? <CityPreviewCard point={selectedPoint} className="map-preview" /> : null}
+        <nav className="city-shortcuts" aria-label="旅行城市">
+          {points.map((point) => (
+            <div className="city-shortcut" key={point.id}>
+              <button
+                aria-pressed={point.id === selectedId}
+                onClick={() => setSelectedId(point.id)}
+                type="button"
+              >
+                {point.name}
+              </button>
+              <Link to={`/city/`}>相册</Link>
+            </div>
+          ))}
+        </nav>
       </section>
     </main>
   );

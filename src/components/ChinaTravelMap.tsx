@@ -2,6 +2,7 @@ import { useEffect, useMemo, useState } from 'react';
 import * as echarts from 'echarts';
 import type { EChartsOption } from 'echarts';
 import ReactECharts from 'echarts-for-react';
+import { publicAsset } from '../lib/assets';
 import type { MapPoint } from '../types/trip';
 
 type ChinaTravelMapProps = {
@@ -38,7 +39,7 @@ export default function ChinaTravelMap({
 
     async function loadChinaMap() {
       try {
-        const response = await fetch('/maps/china.json');
+        const response = await fetch(publicAsset('/maps/china.json'));
 
         if (!response.ok) {
           throw new Error(`Failed to load China map: ${response.status}`);

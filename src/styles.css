@@ -151,6 +151,50 @@ h1 {
   bottom: 48px;
 }
 
+.city-shortcuts {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 8px;
+  padding: 0 16px 12px;
+  justify-content: center;
+}
+
+.city-shortcut {
+  display: inline-flex;
+  align-items: center;
+  gap: 4px;
+  border: 1px solid rgba(32, 32, 31, 0.12);
+  border-radius: 8px;
+  background: rgba(255, 255, 255, 0.78);
+  overflow: hidden;
+}
+
+.city-shortcut button,
+.city-shortcut a {
+  min-height: 36px;
+  padding: 0 10px;
+  border: 0;
+  background: transparent;
+  color: #423d38;
+  font: inherit;
+  text-decoration: none;
+}
+
+.city-shortcut button {
+  cursor: pointer;
+}
+
+.city-shortcut button[aria-pressed='true'] {
+  color: #9c433d;
+  font-weight: 700;
+}
+
+.city-shortcut a {
+  display: inline-flex;
+  align-items: center;
+  border-left: 1px solid rgba(32, 32, 31, 0.1);
+}
+
 @media (max-width: 760px) {
   .map-header,
   .city-hero,
@@ -176,6 +220,11 @@ h1 {
   .map-preview {
     position: static;
     margin: -18px auto 0;
+  }
+
+  .city-shortcuts {
+    justify-content: flex-start;
+    padding: 14px 6px 0;
   }
 
   .photo-grid {
