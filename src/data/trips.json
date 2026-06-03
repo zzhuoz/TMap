@@ -1,0 +1,41 @@
+[
+  {
+    "id": "hangzhou",
+    "city": "杭州",
+    "province": "浙江",
+    "coordinates": [120.1551, 30.2741],
+    "dateRange": "2025.05.01 - 2025.05.03",
+    "cover": "/photos/hangzhou/cover.jpg",
+    "note": "西湖边的一次慢旅行",
+    "photos": [
+      { "src": "/photos/hangzhou/cover.jpg", "caption": "西湖边的傍晚" },
+      { "src": "/photos/hangzhou/01.jpg", "caption": "慢慢走过的街巷" }
+    ]
+  },
+  {
+    "id": "xiamen",
+    "city": "厦门",
+    "province": "福建",
+    "coordinates": [118.0894, 24.4798],
+    "dateRange": "2025.08.10 - 2025.08.13",
+    "cover": "/photos/xiamen/cover.jpg",
+    "note": "海风和橘色日落",
+    "photos": [
+      { "src": "/photos/xiamen/cover.jpg", "caption": "海边日落" },
+      { "src": "/photos/xiamen/01.jpg", "caption": "岛上的午后" }
+    ]
+  },
+  {
+    "id": "chengdu",
+    "city": "成都",
+    "province": "四川",
+    "coordinates": [104.0665, 30.5728],
+    "dateRange": "2025.10.02 - 2025.10.05",
+    "cover": "/photos/chengdu/cover.jpg",
+    "note": "热气腾腾的一站",
+    "photos": [
+      { "src": "/photos/chengdu/cover.jpg", "caption": "夜色里的街头" },
+      { "src": "/photos/chengdu/01.jpg", "caption": "悠闲的下午" }
+    ]
+  }
+]
