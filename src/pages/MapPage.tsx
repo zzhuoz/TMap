@@ -23,7 +23,7 @@ export default function MapPage() {
           points={points}
           selectedId={selectedId}
           onHover={setSelectedId}
-          onLeave={() => undefined}
+          onLeave={setSelectedId}
           onSelect={(id) => navigate(`/city/${id}`)}
         />
         {selectedPoint ? <CityPreviewCard point={selectedPoint} className="map-preview" /> : null}

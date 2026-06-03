@@ -8,7 +8,7 @@ type ChinaTravelMapProps = {
   points: MapPoint[];
   selectedId?: string;
   onHover: (id: string) => void;
-  onLeave: () => void;
+  onLeave: (id: string) => void;
   onSelect: (id: string) => void;
 };
 
@@ -126,8 +126,12 @@ export default function ChinaTravelMap({
         onHover(id);
       }
     },
-    mouseout: () => {
-      onLeave();
+    mouseout: (params) => {
+      const id = getPointId(params);
+
+      if (id) {
+        onLeave(id);
+      }
     },
     click: (params) => {
       const id = getPointId(params);
