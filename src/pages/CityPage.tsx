@@ -29,14 +29,20 @@ export default function CityPage() {
         <h1>{trip.city}</h1>
         <p>{trip.note}</p>
       </header>
-      <section className="photo-grid" aria-label={`${trip.city}相册`}>
-        {trip.photos.map((photo) => (
-          <figure key={photo.src}>
-            <img src={publicAsset(photo.src)} alt={photo.caption ?? trip.city} />
-            {photo.caption ? <figcaption>{photo.caption}</figcaption> : null}
-          </figure>
-        ))}
-      </section>
+      {trip.photos.length > 0 ? (
+        <section className="photo-grid" aria-label={`${trip.city}相册`}>
+          {trip.photos.map((photo) => (
+            <figure key={photo.src}>
+              <img src={publicAsset(photo.src)} alt={photo.caption ?? trip.city} />
+              {photo.caption ? <figcaption>{photo.caption}</figcaption> : null}
+            </figure>
+          ))}
+        </section>
+      ) : (
+        <section className="gallery-empty" aria-label={`${trip.city}相册`}>
+          <p>还没有添加照片</p>
+        </section>
+      )}
       <nav className="city-nav" aria-label="城市切换">
         {adjacent.previous ? (
           <Link to={`/city/${adjacent.previous.id}`}>上一站：{adjacent.previous.city}</Link>

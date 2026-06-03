@@ -1,11 +1,23 @@
 import { fireEvent, render, screen, within } from '@testing-library/react';
 import { MemoryRouter } from 'react-router-dom';
-import { describe, expect, it, vi } from 'vitest';
+import { afterEach, describe, expect, it, vi } from 'vitest';
 import MapPage from './MapPage';
 
+type MockMapProps = {
+  onSelect: (id: string) => void;
+};
+
 vi.mock('../components/ChinaTravelMap', () => ({
-  default: () => <div data-testid="mock-map" />
+  default: ({ onSelect }: MockMapProps) => (
+    <button data-testid="mock-map" onClick={() => onSelect('xiamen')} type="button">
+      mock map xiamen
+    </button>
+  )
 }));
+
+afterEach(() => {
+  vi.unstubAllGlobals();
+});
 
 describe('MapPage', () => {
   it('renders accessible city shortcut gallery links', () => {
@@ -42,5 +54,23 @@ describe('MapPage', () => {
 
     expect(screen.getByRole('heading', { name: '厦门' })).toBeInTheDocument();
     expect(screen.getByText('海风和橘色日落')).toBeInTheDocument();
+  });
+});
+
+
+describe('MapPage mobile map selection', () => {
+  it('shows the city preview before navigating on coarse pointer devices', () => {
+    vi.stubGlobal('matchMedia', () => ({ matches: true }));
+
+    render(
+      <MemoryRouter>
+        <MapPage />
+      </MemoryRouter>
+    );
+
+    fireEvent.click(screen.getByTestId('mock-map'));
+
+    expect(screen.getByRole('heading', { name: '厦门' })).toBeInTheDocument();
+    expect(screen.getByRole('link', { name: '查看相册' })).toHaveAttribute('href', '/city/xiamen');
   });
 });

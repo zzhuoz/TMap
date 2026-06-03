@@ -4,12 +4,25 @@ import ChinaTravelMap from '../components/ChinaTravelMap';
 import CityPreviewCard from '../components/CityPreviewCard';
 import { getMapPoints, trips } from '../lib/trips';
 
+function prefersPreviewFirst(): boolean {
+  return window.matchMedia('(hover: none), (pointer: coarse)').matches;
+}
+
 export default function MapPage() {
   const navigate = useNavigate();
   const points = useMemo(() => getMapPoints(), []);
   const [selectedId, setSelectedId] = useState(points[0]?.id);
   const selectedPoint = points.find((point) => point.id === selectedId);
   const keepLastPreview = (_id: string) => undefined;
+
+  function handleMapSelect(id: string) {
+    if (prefersPreviewFirst() && id !== selectedId) {
+      setSelectedId(id);
+      return;
+    }
+
+    navigate(`/city/${id}`);
+  }
 
   return (
     <main className="map-page">
@@ -25,7 +38,7 @@ export default function MapPage() {
           selectedId={selectedId}
           onHover={setSelectedId}
           onLeave={keepLastPreview}
-          onSelect={(id) => navigate(`/city/${id}`)}
+          onSelect={handleMapSelect}
         />
         {selectedPoint ? <CityPreviewCard point={selectedPoint} className="map-preview" /> : null}
         <nav className="city-shortcuts" aria-label="旅行城市">
@@ -38,7 +51,9 @@ export default function MapPage() {
               >
                 {point.name}
               </button>
-              <Link aria-label={`查看${point.name}相册`} to={`/city/${point.id}`}>相册</Link>
+              <Link aria-label={`查看${point.name}相册`} to={`/city/${point.id}`}>
+                相册
+              </Link>
             </div>
           ))}
         </nav>
