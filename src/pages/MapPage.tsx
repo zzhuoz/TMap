@@ -38,7 +38,7 @@ export default function MapPage() {
               >
                 {point.name}
               </button>
-              <Link to={`/city/`}>相册</Link>
+              <Link aria-label={`查看${point.name}相册`} to={`/city/${point.id}`}>相册</Link>
             </div>
           ))}
         </nav>
