@@ -39,7 +39,7 @@ export default function ChinaTravelMap({
 
     async function loadChinaMap() {
       try {
-        const response = await fetch(publicAsset('/maps/china.json'));
+        const response = await fetch(publicAsset('/maps/china-prefectures.json'));
 
         if (!response.ok) {
           throw new Error(`Failed to load China map: ${response.status}`);
@@ -48,7 +48,7 @@ export default function ChinaTravelMap({
         const geoJson = (await response.json()) as ChinaGeoJson;
 
         if (!cancelled) {
-          echarts.registerMap('china', geoJson);
+          echarts.registerMap('china-prefectures', geoJson);
           setMapState('ready');
         }
       } catch {
@@ -72,9 +72,12 @@ export default function ChinaTravelMap({
         trigger: 'item'
       },
       geo: {
-        map: 'china',
+        map: 'china-prefectures',
+        nameProperty: '地名',
         roam: true,
-        zoom: 1.25,
+        zoom: 1.75,
+        layoutCenter: ['50%', '52%'],
+        layoutSize: '124%',
         label: {
           show: false
         },

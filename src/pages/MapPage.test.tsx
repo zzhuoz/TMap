@@ -1,5 +1,5 @@
 import { fireEvent, render, screen, within } from '@testing-library/react';
-import { MemoryRouter } from 'react-router-dom';
+import { MemoryRouter, Route, Routes } from 'react-router-dom';
 import { afterEach, describe, expect, it, vi } from 'vitest';
 import MapPage from './MapPage';
 
@@ -20,57 +20,52 @@ afterEach(() => {
 });
 
 describe('MapPage', () => {
-  it('renders accessible city shortcut gallery links', () => {
+  it('renders the brand logo in the header without the old text lockup', () => {
     render(
       <MemoryRouter>
         <MapPage />
       </MemoryRouter>
     );
 
-    const shortcuts = screen.getByRole('navigation', { name: '旅行城市' });
+    const header = screen.getByRole('banner');
 
-    expect(within(shortcuts).getByRole('link', { name: '查看杭州相册' })).toHaveAttribute(
-      'href',
-      '/city/hangzhou'
+    expect(within(header).getByRole('img', { name: 'TMap' })).toHaveAttribute(
+      'src',
+      '/TMap/brand/tmap_logo.png'
     );
-    expect(within(shortcuts).getByRole('link', { name: '查看厦门相册' })).toHaveAttribute(
-      'href',
-      '/city/xiamen'
-    );
-    expect(within(shortcuts).getByRole('link', { name: '查看成都相册' })).toHaveAttribute(
-      'href',
-      '/city/chengdu'
-    );
+    expect(within(header).queryByText('TMap')).not.toBeInTheDocument();
+    expect(within(header).queryByText('我们的旅行地图')).not.toBeInTheDocument();
+    expect(within(header).queryByText(/座城市/)).not.toBeInTheDocument();
   });
 
-  it('lets keyboard-accessible city buttons update the preview', () => {
+  it('omits the old city shortcuts and preview card chrome', () => {
     render(
       <MemoryRouter>
         <MapPage />
       </MemoryRouter>
     );
 
-    fireEvent.click(screen.getByRole('button', { name: '厦门' }));
-
-    expect(screen.getByRole('heading', { name: '厦门' })).toBeInTheDocument();
-    expect(screen.getByText('海风和橘色日落')).toBeInTheDocument();
+    expect(screen.queryByRole('navigation', { name: '旅行城市' })).not.toBeInTheDocument();
+    expect(screen.queryByRole('heading', { name: '杭州' })).not.toBeInTheDocument();
+    expect(screen.queryByRole('link', { name: '查看相册' })).not.toBeInTheDocument();
   });
 });
 
-
-describe('MapPage mobile map selection', () => {
-  it('shows the city preview before navigating on coarse pointer devices', () => {
+describe('MapPage map selection', () => {
+  it('navigates directly to the selected city gallery', () => {
     vi.stubGlobal('matchMedia', () => ({ matches: true }));
 
     render(
-      <MemoryRouter>
-        <MapPage />
+      <MemoryRouter initialEntries={["/"]}>
+        <Routes>
+          <Route path="/" element={<MapPage />} />
+          <Route path="/city/:id" element={<div>city gallery route</div>} />
+        </Routes>
       </MemoryRouter>
     );
 
     fireEvent.click(screen.getByTestId('mock-map'));
 
-    expect(screen.getByRole('heading', { name: '厦门' })).toBeInTheDocument();
-    expect(screen.getByRole('link', { name: '查看相册' })).toHaveAttribute('href', '/city/xiamen');
+    expect(screen.getByText('city gallery route')).toBeInTheDocument();
   });
 });
