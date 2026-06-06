@@ -1,41 +1,131 @@
 [
   {
+    "id": "shanghai",
+    "city": "上海",
+    "province": "上海",
+    "coordinates": [
+      121.4737,
+      31.2304
+    ],
+    "regionCode": "310000",
+    "dateRange": "待整理",
+    "cover": "",
+    "note": "还没整理照片的一站",
+    "photos": [],
+    "regionName": "上海市"
+  },
+  {
     "id": "hangzhou",
     "city": "杭州",
     "province": "浙江",
-    "coordinates": [120.1551, 30.2741],
+    "coordinates": [
+      120.1551,
+      30.2741
+    ],
+    "regionCode": "330100",
     "dateRange": "2025.05.01 - 2025.05.03",
     "cover": "/photos/hangzhou/cover.jpg",
     "note": "西湖边的一次慢旅行",
     "photos": [
-      { "src": "/photos/hangzhou/cover.jpg", "caption": "西湖边的傍晚" },
-      { "src": "/photos/hangzhou/01.jpg", "caption": "慢慢走过的街巷" }
-    ]
+      {
+        "src": "/photos/hangzhou/cover.jpg",
+        "caption": "西湖边的傍晚"
+      },
+      {
+        "src": "/photos/hangzhou/01.jpg",
+        "caption": "慢慢走过的街巷"
+      }
+    ],
+    "regionName": "杭州市"
   },
   {
-    "id": "xiamen",
-    "city": "厦门",
+    "id": "shaoxing",
+    "city": "绍兴",
+    "province": "浙江",
+    "coordinates": [
+      120.5821,
+      29.9971
+    ],
+    "regionCode": "330600",
+    "dateRange": "待整理",
+    "cover": "",
+    "note": "还没整理照片的一站",
+    "photos": [],
+    "regionName": "绍兴市"
+  },
+  {
+    "id": "taizhou",
+    "city": "台州",
+    "province": "浙江",
+    "coordinates": [
+      121.4208,
+      28.6564
+    ],
+    "regionCode": "331000",
+    "dateRange": "待整理",
+    "cover": "",
+    "note": "还没整理照片的一站",
+    "photos": [],
+    "regionName": "台州市"
+  },
+  {
+    "id": "ningbo",
+    "city": "宁波",
+    "province": "浙江",
+    "coordinates": [
+      121.5503,
+      29.8746
+    ],
+    "regionCode": "330200",
+    "dateRange": "待整理",
+    "cover": "",
+    "note": "还没整理照片的一站",
+    "photos": [],
+    "regionName": "宁波市"
+  },
+  {
+    "id": "wenzhou",
+    "city": "温州",
+    "province": "浙江",
+    "coordinates": [
+      120.6994,
+      27.9949
+    ],
+    "regionCode": "330300",
+    "dateRange": "待整理",
+    "cover": "",
+    "note": "还没整理照片的一站",
+    "photos": [],
+    "regionName": "温州市"
+  },
+  {
+    "id": "nanchang",
+    "city": "南昌",
+    "province": "江西",
+    "coordinates": [
+      115.8582,
+      28.6829
+    ],
+    "regionCode": "360100",
+    "dateRange": "待整理",
+    "cover": "",
+    "note": "还没整理照片的一站",
+    "photos": [],
+    "regionName": "南昌市"
+  },
+  {
+    "id": "fuzhou",
+    "city": "福州",
     "province": "福建",
-    "coordinates": [118.0894, 24.4798],
-    "dateRange": "2025.08.10 - 2025.08.13",
-    "cover": "/photos/xiamen/cover.jpg",
-    "note": "海风和橘色日落",
-    "photos": [
-      { "src": "/photos/xiamen/cover.jpg", "caption": "海边日落" },
-      { "src": "/photos/xiamen/01.jpg", "caption": "岛上的午后" }
-    ]
-  },
-  {
-    "id": "chengdu",
-    "city": "成都",
-    "province": "四川",
-    "coordinates": [104.0665, 30.5728],
-    "dateRange": "2025.10.02 - 2025.10.05",
-    "cover": "/photos/chengdu/cover.jpg",
-    "note": "热气腾腾的一站",
-    "photos": [
-      { "src": "/photos/chengdu/cover.jpg", "caption": "夜色里的街头" },
-      { "src": "/photos/chengdu/01.jpg", "caption": "悠闲的下午" }
-    ]
+    "coordinates": [
+      119.2965,
+      26.0745
+    ],
+    "regionCode": "350100",
+    "dateRange": "待整理",
+    "cover": "",
+    "note": "还没整理照片的一站",
+    "photos": [],
+    "regionName": "福州市"
   }
 ]

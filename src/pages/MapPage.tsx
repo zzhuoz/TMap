@@ -14,7 +14,7 @@ export default function MapPage() {
   }
 
   return (
-    <main className="map-page">
+    <main className="map-page" data-layout="fixed-map">
       <header className="map-header">
         <img className="brand-logo" src={publicAsset('/brand/tmap_logo.png')} alt="TMap" />
       </header>

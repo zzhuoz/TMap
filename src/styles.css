@@ -29,15 +29,19 @@ a {
 }
 
 .map-page {
-  display: grid;
-  grid-template-rows: auto 1fr;
+  position: relative;
+  height: 100vh;
+  overflow: hidden;
   background: #f7f3ee;
 }
 
 .map-header {
+  position: absolute;
+  top: 18px;
+  left: 28px;
+  z-index: 5;
   display: flex;
   align-items: center;
-  padding: 18px 28px 0;
 }
 
 .brand-logo {
@@ -113,16 +117,16 @@ h1 {
 }
 
 .map-stage {
-  position: relative;
-  min-height: calc(100vh - 94px);
-  padding: 0 12px 12px;
+  position: absolute;
+  inset: 0;
+  overflow: hidden;
 }
 
 .china-map,
 .map-loading {
   width: 100%;
-  height: calc(100vh - 106px);
-  min-height: 560px;
+  height: 100%;
+  min-height: 0;
 }
 
 .map-loading {
@@ -142,7 +146,8 @@ h1 {
   }
 
   .map-header {
-    padding: 14px 16px 0;
+    top: 14px;
+    left: 16px;
   }
 
   .brand-logo {
@@ -150,14 +155,13 @@ h1 {
   }
 
   .map-stage {
-    min-height: calc(100vh - 80px);
-    padding: 0 6px 8px;
+    inset: 0;
   }
 
   .china-map,
   .map-loading {
-    height: calc(100vh - 88px);
-    min-height: 500px;
+    height: 100%;
+    min-height: 0;
   }
 
   .photo-grid {

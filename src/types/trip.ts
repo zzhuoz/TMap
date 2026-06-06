@@ -8,6 +8,8 @@ export type Trip = {
   city: string;
   province: string;
   coordinates: [number, number];
+  regionCode: string;
+  regionName: string;
   dateRange: string;
   cover: string;
   note: string;
@@ -18,6 +20,8 @@ export type MapPoint = {
   id: string;
   name: string;
   value: [number, number];
+  regionCode: string;
+  regionName: string;
   cover: string;
   dateRange: string;
   note: string;

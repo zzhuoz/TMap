@@ -3,7 +3,7 @@ import { findTripById, getAdjacentTrips, getMapPoints, trips } from './trips';
 
 describe('trip helpers', () => {
   it('finds trips by id', () => {
-    expect(findTripById('hangzhou')?.city).toBe('杭州');
+    expect(findTripById('shanghai')?.city).toBe('上海');
     expect(findTripById('missing-city')).toBeUndefined();
   });
 
@@ -11,16 +11,17 @@ describe('trip helpers', () => {
     expect(getMapPoints()).toEqual(
       expect.arrayContaining([
         expect.objectContaining({
-          id: 'hangzhou',
-          name: '杭州',
-          value: [120.1551, 30.2741]
+          id: 'fuzhou',
+          name: '福州',
+          value: [119.2965, 26.0745],
+          regionCode: '350100'
         })
       ])
     );
   });
 
   it('gets previous and next trips from data order', () => {
-    const adjacent = getAdjacentTrips('xiamen');
+    const adjacent = getAdjacentTrips('hangzhou');
 
     expect(adjacent.previous?.id).toBe(trips[0].id);
     expect(adjacent.next?.id).toBe(trips[2].id);

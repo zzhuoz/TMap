@@ -9,8 +9,8 @@ type MockMapProps = {
 
 vi.mock('../components/ChinaTravelMap', () => ({
   default: ({ onSelect }: MockMapProps) => (
-    <button data-testid="mock-map" onClick={() => onSelect('xiamen')} type="button">
-      mock map xiamen
+    <button data-testid="mock-map" onClick={() => onSelect('fuzhou')} type="button">
+      mock map fuzhou
     </button>
   )
 }));
@@ -36,6 +36,16 @@ describe('MapPage', () => {
     expect(within(header).queryByText('TMap')).not.toBeInTheDocument();
     expect(within(header).queryByText('我们的旅行地图')).not.toBeInTheDocument();
     expect(within(header).queryByText(/座城市/)).not.toBeInTheDocument();
+  });
+
+  it('uses a fixed map viewport layout', () => {
+    render(
+      <MemoryRouter>
+        <MapPage />
+      </MemoryRouter>
+    );
+
+    expect(screen.getByRole('main')).toHaveAttribute('data-layout', 'fixed-map');
   });
 
   it('omits the old city shortcuts and preview card chrome', () => {

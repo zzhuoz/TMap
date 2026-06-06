@@ -15,6 +15,8 @@ function isTrip(value: unknown): value is Trip {
     Array.isArray(trip.coordinates) &&
     trip.coordinates.length === 2 &&
     trip.coordinates.every((coordinate) => typeof coordinate === 'number') &&
+    typeof trip.regionCode === 'string' &&
+    typeof trip.regionName === 'string' &&
     typeof trip.dateRange === 'string' &&
     typeof trip.cover === 'string' &&
     typeof trip.note === 'string' &&
@@ -58,6 +60,8 @@ export function getMapPoints(): MapPoint[] {
     id: trip.id,
     name: trip.city,
     value: trip.coordinates,
+    regionCode: trip.regionCode,
+    regionName: trip.regionName,
     cover: trip.cover,
     dateRange: trip.dateRange,
     note: trip.note
