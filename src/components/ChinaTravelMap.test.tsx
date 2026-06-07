@@ -116,6 +116,7 @@ describe('ChinaTravelMap', () => {
         ]}
         onHover={() => undefined}
         onLeave={() => undefined}
+        onMove={() => undefined}
         onSelect={() => undefined}
       />
     );
@@ -131,7 +132,7 @@ describe('ChinaTravelMap', () => {
     expect(screen.getByTestId('chart')).toHaveAttribute('data-has-point-layer', 'false');
     expect(screen.getByTestId('chart')).toHaveAttribute('data-height', '100%');
     expect(screen.getByTestId('chart')).toHaveAttribute('data-visited-count', '1');
-    expect(screen.getByTestId('chart')).toHaveAttribute('data-visited-color', '#173b73');
+    expect(screen.getByTestId('chart')).toHaveAttribute('data-visited-color', '#3f79ff');
     expect(screen.getByTestId('chart')).toHaveAttribute('data-visited-region-name', '福州市');
     expect(screen.getByTestId('chart')).toHaveAttribute('data-width', '100%');
     expect(screen.getByTestId('chart')).toHaveAttribute('data-map', 'china-prefectures');

@@ -47,10 +47,19 @@
       29.9971
     ],
     "regionCode": "330600",
-    "dateRange": "待整理",
+    "dateRange": "2026春节前",
     "cover": "",
-    "note": "还没整理照片的一站",
-    "photos": [],
+    "note": "鲁迅故里",
+    "photos": [
+      {
+        "src": "/photos/shaoxing/cover.jpg",
+        "caption": ""
+      },
+      {
+        "src": "/photos/shaoxing/2.jpg",
+        "caption": ""
+      }
+    ],
     "regionName": "绍兴市"
   },
   {

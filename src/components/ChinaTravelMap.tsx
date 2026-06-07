@@ -6,11 +6,14 @@ import { provincialCapitals } from '../data/provincial-capitals';
 import { publicAsset } from '../lib/assets';
 import type { MapPoint } from '../types/trip';
 
+type PointerPosition = { x: number; y: number };
+
 type ChinaTravelMapProps = {
   points: MapPoint[];
   selectedId?: string;
-  onHover: (id: string) => void;
+  onHover: (id: string, position: PointerPosition) => void;
   onLeave: (id: string) => void;
+  onMove: (id: string, position: PointerPosition) => void;
   onSelect: (id: string) => void;
 };
 
@@ -32,6 +35,16 @@ type ChartEventParams = {
   data?: {
     id?: string;
   };
+  event?: {
+    offsetX?: number;
+    offsetY?: number;
+    event?: {
+      offsetX?: number;
+      offsetY?: number;
+      clientX?: number;
+      clientY?: number;
+    };
+  };
 };
 
 function getPointId(params: ChartEventParams, points: MapPoint[]): string | undefined {
@@ -40,6 +53,15 @@ function getPointId(params: ChartEventParams, points: MapPoint[]): string | unde
   }
 
   return points.find((point) => point.regionName === params.name)?.id;
+}
+
+function getPointerPosition(params: ChartEventParams): PointerPosition {
+  const nativeEvent = params.event?.event;
+
+  return {
+    x: params.event?.offsetX ?? nativeEvent?.offsetX ?? nativeEvent?.clientX ?? 0,
+    y: params.event?.offsetY ?? nativeEvent?.offsetY ?? nativeEvent?.clientY ?? 0
+  };
 }
 
 function extractBoundaryLines(geoJson: BoundaryGeoJson): BoundaryLine[] {
@@ -69,6 +91,7 @@ export default function ChinaTravelMap({
   selectedId,
   onHover,
   onLeave,
+  onMove,
   onSelect
 }: ChinaTravelMapProps) {
   const [mapState, setMapState] = useState<'loading' | 'ready' | 'error'>('loading');
@@ -148,10 +171,10 @@ export default function ChinaTravelMap({
         regions: points.map((point) => ({
           name: point.regionName,
           itemStyle: {
-            areaColor: '#173b73',
-            borderColor: '#f7f3ee',
+            areaColor: '#3f79ff',
+            borderColor: '#f7fbff',
             borderWidth: 1.1,
-            opacity: 0.92
+            opacity: 0.9
           },
           emphasis: {
             itemStyle: {
@@ -225,7 +248,14 @@ export default function ChinaTravelMap({
       const id = getPointId(params, points);
 
       if (id) {
-        onHover(id);
+        onHover(id, getPointerPosition(params));
+      }
+    },
+    mousemove: (params) => {
+      const id = getPointId(params, points);
+
+      if (id) {
+        onMove(id, getPointerPosition(params));
       }
     },
     mouseout: (params) => {
